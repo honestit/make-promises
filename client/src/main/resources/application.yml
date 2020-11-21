@@ -1,6 +1,9 @@
 spring:
   application:
     name: promises-client
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: true
 
 promises:
   services:
