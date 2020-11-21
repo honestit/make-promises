@@ -13,4 +13,11 @@
 	<name>make-promises-model</name>
 	<description>Promises model classes</description>
 
+	<dependencies>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+	</dependencies>
+
 </project>
