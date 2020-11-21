@@ -27,4 +27,14 @@
 		<java.version>11</java.version>
 	</properties>
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>pl.honestit.projects</groupId>
+				<artifactId>make-promises-model</artifactId>
+				<version>${version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 </project>
