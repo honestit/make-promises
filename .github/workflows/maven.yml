@@ -21,4 +21,4 @@ jobs:
       with:
         java-version: 11
     - name: Build
-      run: mvn -B package --file pom.xml
+      run: ./mvnw -B package --file pom.xml
