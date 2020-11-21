@@ -25,6 +25,8 @@ public class PromiseEntityConverter {
     }
 
     private ZonedDateTime asZoneDateTime(Deadline deadline) {
+        if (deadline == null) return null;
+        if (deadline.getZoneId() == null) return null;
         return ZonedDateTime.of(deadline.getTillDate().atTime(deadline.getTillTime()), deadline.getZoneId());
     }
 }

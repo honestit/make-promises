@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.honestit.projects.promises.maker.executor.PromiseMaker;
+import pl.honestit.projects.promises.context.PromiseMaker;
 import pl.honestit.projects.promises.model.promise.Promise;
 
 @Service
