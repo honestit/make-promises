@@ -7,3 +7,4 @@ promises:
     maker:
       exchange-name: make-promise-exchange
       queue-name: make-promise-queue
+      routing-key: newpromise

@@ -11,4 +11,5 @@ public class MakerProperties {
 
     private String exchangeName;
     private String queueName;
+    private String routingKey;
 }

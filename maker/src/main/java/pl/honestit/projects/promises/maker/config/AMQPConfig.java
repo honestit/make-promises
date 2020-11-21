@@ -36,7 +36,7 @@ public class AMQPConfig {
     @Bean
     public Binding makerBinding(Queue makerQueue, DirectExchange makerExchange) {
         log.debug("Creating binding bean for queue '{}' and exchange '{}'", makerQueue, makerExchange);
-        return BindingBuilder.bind(makerQueue).to(makerExchange).with("newpromise");
+        return BindingBuilder.bind(makerQueue).to(makerExchange).with(makerProperties.getRoutingKey());
     }
 
     @Bean
