@@ -2,6 +2,14 @@ spring:
   application:
     name: promises-maker
 
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+logging:
+  level:
+    pl.honestit.projects.promises.maker: DEBUG
+
 promises:
   services:
     maker:

@@ -1,5 +1,6 @@
 package pl.honestit.projects.promises.maker.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Binding;
@@ -9,6 +10,7 @@ import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import pl.honestit.projects.promises.maker.listener.PromiseListener;
@@ -40,9 +42,11 @@ public class AMQPConfig {
     }
 
     @Bean
-    public MessageListenerAdapter listenerAdapter(PromiseListener promiseListener) {
+    public MessageListenerAdapter listenerAdapter(PromiseListener promiseListener, Jackson2JsonMessageConverter converter) {
         log.debug("Creating message listener adapter for receiver: {}", promiseListener);
-        return new MessageListenerAdapter(promiseListener, "receivedPromise");
+        MessageListenerAdapter adapter = new MessageListenerAdapter(promiseListener, converter);
+        adapter.setDefaultListenerMethod("receivedPromise");
+        return adapter;
     }
 
     @Bean
@@ -53,6 +57,11 @@ public class AMQPConfig {
         container.setQueueNames(makerProperties.getQueueName());
         container.setMessageListener(messageListenerAdapter);
         return container;
+    }
+
+    @Bean
+    public Jackson2JsonMessageConverter jackson2JsonMessageConverter(ObjectMapper objectMapper) {
+        return new Jackson2JsonMessageConverter(objectMapper);
     }
 
 }
