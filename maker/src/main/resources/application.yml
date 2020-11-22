@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: promises-maker
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+logging:
+  level:
+    pl.honestit.projects.promises.maker: DEBUG
+
+promises:
+  services:
+    maker:
+      exchange-name: make-promise-exchange
+      queue-name: make-promise-queue
+      routing-key: newpromise
