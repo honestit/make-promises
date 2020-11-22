@@ -17,6 +17,7 @@
 		<module>keeper</module>
 		<module>maker</module>
 		<module>model</module>
+		<module>finder</module>
 	</modules>
 
 	<packaging>pom</packaging>
