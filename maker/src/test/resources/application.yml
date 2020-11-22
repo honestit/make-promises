@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: promises-maker
+
+promises:
+  services:
+    maker:
+      exchange-name: make-promise-exchange
+      queue-name: make-promise-queue
+      routing-key: newpromise

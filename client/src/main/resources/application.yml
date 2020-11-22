@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: promises-client
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: true
+
+promises:
+  services:
+    maker:
+      client:
+        exchange-name: make-promise-exchange
+        queue-name: make-promise-queue
+        routing-key: newpromise
