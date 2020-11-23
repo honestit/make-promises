@@ -1,4 +1,4 @@
-package pl.honestit.projects.promises.client.web;
+package pl.honestit.projects.promises.client.giving.first;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.honestit.projects.promises.client.command.GiveFirstPromiseCommand;
 
 import javax.validation.Valid;
 
@@ -17,16 +16,16 @@ import javax.validation.Valid;
 @RequestMapping("/first-promise")
 @Slf4j
 @RequiredArgsConstructor
-public class MakeFirstPromiseController {
+public class FirstPromiseController {
 
     @GetMapping
     public String prepareFirstPromisePage(Model model) {
-        model.addAttribute("givenPromise", new GiveFirstPromiseCommand());
+        model.addAttribute("firstPromise", new FirstPromiseCommand());
         return "promises/first";
     }
 
     @PostMapping
-    public String giveFirstPromise(@Valid @ModelAttribute("givenPromise") GiveFirstPromiseCommand givenPromise, BindingResult bindings) {
+    public String giveFirstPromise(@Valid @ModelAttribute("firstPromise") FirstPromiseCommand givenPromise, BindingResult bindings) {
         log.debug("First promise from {} to give: {}", givenPromise.getWho(), givenPromise);
         if (bindings.hasErrors()) {
             log.debug("Promise with errors! Stepping back to page");
