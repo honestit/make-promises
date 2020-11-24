@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  database:
+    image: postgres:10
+    restart: always
+    environment:
+      - POSTGRES_DB=promises
+      - POSTGRES_USER=maker
+      - POSTGRES_PASSWORD=maker
+    ports:
+      - 5432:5432
+  messaging:
+    image: rabbitmq
+    restart: always
+    ports:
+      - 5671:5671
+      - 5672:5672

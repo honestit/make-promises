@@ -13,12 +13,13 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+@DisplayName("Specification: When app is starting")
 @Import(MakerProperties.class)
 @ImportAutoConfiguration(ConfigurationPropertiesAutoConfiguration.class)
 @TestPropertySource(properties = {
         "promises.services.maker.exchange-name=" + MakerPropertiesTest.EXCHANGE_NAME,
         "promises.services.maker.queue-name=" + MakerPropertiesTest.QUEUE_NAME,
-        "promises.services.maker.roting-key=" + MakerPropertiesTest.ROUTING_KEY
+        "promises.services.maker.routing-key=" + MakerPropertiesTest.ROUTING_KEY
 })
 @ExtendWith(SpringExtension.class)
 class MakerPropertiesTest {
@@ -31,7 +32,7 @@ class MakerPropertiesTest {
     MakerProperties makerProperties;
 
     @Test
-    @DisplayName("Should configure maker properties with set value")
+    @DisplayName("- should maker properties be set")
     void test1() {
         assertNotNull(makerProperties);
         assertEquals(EXCHANGE_NAME, makerProperties.getExchangeName());

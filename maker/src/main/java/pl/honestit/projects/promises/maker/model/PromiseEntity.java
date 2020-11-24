@@ -18,7 +18,7 @@ import java.util.Optional;
 public class PromiseEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
@@ -27,10 +27,11 @@ public class PromiseEntity implements Serializable {
     private String whom;
     @Column(nullable = false)
     private String what;
-    @Column(nullable = false, table = "promises_deadlines")
+    @Column(nullable = false, table = "promises_deadlines", name = "\"when\"")
     private ZonedDateTime when;
     @Column(nullable = false, table = "promises_deadlines")
     private ZonedDateTime till;
+    @Column(table = "promises_deadlines")
     private ZonedDateTime pass;
     private Boolean kept;
 
