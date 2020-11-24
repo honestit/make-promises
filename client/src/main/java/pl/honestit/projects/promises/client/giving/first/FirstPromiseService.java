@@ -39,6 +39,7 @@ public class FirstPromiseService {
         log.debug("Promise was give to maker!");
 
         userFromEntity(userEntity);
+        return null;
     }
 
     private User userFromEntity(UserEntity userEntity) {
