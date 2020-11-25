@@ -1,6 +1,6 @@
 FROM openjdk:14-jdk
 
-VOLUME /tmp
-ADD maven/*.jar app.jar
-RUN sh -c 'touch /app.jar'
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+ARG JAR_FILE=target/make-promises-maker-0.0.1-SNAPSHOT.jar
+COPY ${JAR_FILE} maker-app.jar
+
+ENTRYPOINT ["java","-jar","/maker-app.jar"]
