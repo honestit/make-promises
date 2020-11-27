@@ -1,7 +1,9 @@
 name: Labeler
 on:
-  pull-request:
-    branches: main, develop
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
 
 jobs:
   label:
