@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add your first promise</title>
+</head>
+<body>
+<section>
+    <h1>Add your first promise</h1>
+</section>
+<section>
+    <div>
+        <form th:action="@{/first-promise}" th:object="${firstPromise}">
+            <div>
+                <label>Who you are?
+                    <input th:field="*{who}" type="text" required/>
+                </label>
+                <div th:if="${#fields.hasErrors('who')}">
+                    <span th:each="error : ${#fields.errors('who')}" th:text="${error}"></span>
+                </div>
+            </div>
+            <div>
+                <label><span>What do you promise?</span>
+                    <input th:field="*{what}" type="text" required/>
+                </label>
+                <div th:if="${#fields.hasErrors('what')}">
+                    <span th:each="error : ${#fields.errors('what')}" th:text="${error}"></span>
+                </div>
+            </div>
+            <div>
+                <label><span>Whom do you promise?</span>
+                    <input th:field="*{whom}" type="text" required/>
+                </label>
+                <div th:if="${#fields.hasErrors('whom')}">
+                    <span th:each="error : ${#fields.errors('whom')}" th:text="${error}"></span>
+                </div>
+            </div>
+            <div>
+                <label><span>Till what day?</span>
+                    <input th:field="*{tillDate}" type="date"/>
+                </label>
+                <label><span>and what time?</span>
+                    <input th:field="*{tillTime}" type="time"/>
+                </label>
+                <div th:if="${#fields.hasErrors('tillDate') or #fields.hasErrors('tillTime')}">
+                    <span th:each="error : ${#fields.errors('tillDate')}" th:text="${error}"></span>
+                    <span th:each="error : ${#fields.errors('tillTime')}" th:text="${error}"></span>
+                </div>
+            </div>
+            <div>
+                <button type="submit">Give it</button>
+            </div>
+        </form>
+    </div>
+</section>
+</body>
+</html>

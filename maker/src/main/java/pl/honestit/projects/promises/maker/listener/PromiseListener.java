@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.honestit.projects.promises.context.PromiseMaker;
+import pl.honestit.projects.promises.maker.executor.RejectedPromiseExecutor;
 import pl.honestit.projects.promises.model.promise.Promise;
 
 @Service
@@ -13,6 +14,7 @@ import pl.honestit.projects.promises.model.promise.Promise;
 public class PromiseListener {
 
     private final PromiseMaker promiseMaker;
+    private final RejectedPromiseExecutor rejectedPromiseExecutor;
 
     @Transactional
     public void receivedPromise(Promise promise) {
@@ -22,8 +24,9 @@ public class PromiseListener {
         if (made) {
             log.debug("Promise was successfully made");
         } else {
-            log.debug("Promise somehow was not made");
-            log.debug("Sending promise to discarded queue");
+            log.warn("Promise somehow was not made");
+            rejectedPromiseExecutor.rejectPromise(promise);
+            log.warn("Promise was rejected");
         }
 
     }

@@ -1,4 +1,4 @@
-package pl.honestit.projects.promises.client.amqp;
+package pl.honestit.projects.promises.client.external.amqp;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
