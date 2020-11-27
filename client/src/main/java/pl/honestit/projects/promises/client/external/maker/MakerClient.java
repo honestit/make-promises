@@ -1,10 +1,9 @@
-package pl.honestit.projects.promises.client.maker;
+package pl.honestit.projects.promises.client.external.maker;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
-import pl.honestit.projects.promises.client.properties.MakerClientProperties;
 import pl.honestit.projects.promises.context.PromiseMaker;
 import pl.honestit.projects.promises.model.promise.Promise;
 

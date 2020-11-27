@@ -1,5 +1,6 @@
-package pl.honestit.projects.promises.client.properties;
+package pl.honestit.projects.promises.client.external.maker;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -9,9 +10,6 @@ import org.springframework.boot.autoconfigure.context.ConfigurationPropertiesAut
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @Import(MakerClientProperties.class)
 @ImportAutoConfiguration(ConfigurationPropertiesAutoConfiguration.class)
@@ -33,10 +31,10 @@ class MakerClientPropertiesTest {
     @Test
     @DisplayName("Should configure maker client properties with required values")
     void test1() {
-        assertNotNull(cut);
-        assertEquals(EXCHANGE_NAME, cut.getExchangeName());
-        assertEquals(QUEUE_NAME, cut.getQueueName());
-        assertEquals(ROUTING_KEY, cut.getRoutingKey());
+        Assertions.assertNotNull(cut);
+        Assertions.assertEquals(EXCHANGE_NAME, cut.getExchangeName());
+        Assertions.assertEquals(QUEUE_NAME, cut.getQueueName());
+        Assertions.assertEquals(ROUTING_KEY, cut.getRoutingKey());
     }
 
 

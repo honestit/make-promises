@@ -1,0 +1,27 @@
+# Changes on repo root
+repo-management:
+  - ./*
+
+# Label for project modules
+maker:
+  - ./maker/**
+model:
+  - ./model/**
+client:
+  - ./client/**
+finder:
+  - ./finder/**
+keeper:
+  - ./keeper/**
+
+# Labels for specific file changes
+docker:
+  - Dockerfile
+java:
+  - ./**/src/**/*.java
+mvn:
+  - pom.xml
+unit-test:
+  - ./**/src/test/**/*Test.java
+it-test:
+  - ./**/src/test/**/*IT.java

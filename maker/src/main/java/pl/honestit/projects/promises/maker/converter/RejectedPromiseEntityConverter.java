@@ -1,20 +1,21 @@
 package pl.honestit.projects.promises.maker.converter;
 
 import org.springframework.stereotype.Component;
-import pl.honestit.projects.promises.maker.model.PromiseEntity;
+import pl.honestit.projects.promises.maker.model.RejectedPromiseEntity;
 import pl.honestit.projects.promises.model.friend.Friend;
 import pl.honestit.projects.promises.model.friend.FriendIdentity;
 import pl.honestit.projects.promises.model.promise.Deadline;
 import pl.honestit.projects.promises.model.promise.Promise;
+import pl.honestit.projects.promises.model.promise.RejectReason;
 
 import java.time.ZonedDateTime;
 import java.util.Optional;
 
 @Component
-public class PromiseEntityConverter {
+public class RejectedPromiseEntityConverter {
 
-    public PromiseEntity from(Promise promise) {
-        return PromiseEntity.builder()
+    public RejectedPromiseEntity from(Promise promise) {
+        RejectedPromiseEntity rejectedPromiseEntity = RejectedPromiseEntity.builder()
                 .who(promise.getWho())
                 .what(promise.getWhat())
                 .whom(Optional.ofNullable(promise.getWhom())
@@ -27,6 +28,8 @@ public class PromiseEntityConverter {
                 .when(promise.getWhen())
                 .till(asZoneDateTime(promise.getTill()))
                 .build();
+        updateWithReason(rejectedPromiseEntity);
+        return rejectedPromiseEntity;
     }
 
     private ZonedDateTime asZoneDateTime(Deadline deadline) {
@@ -35,5 +38,16 @@ public class PromiseEntityConverter {
         if (deadline.getTillDate() == null) return null;
         if (deadline.getTillTime() == null) return null;
         return ZonedDateTime.of(deadline.getTillDate().atTime(deadline.getTillTime()), deadline.getZoneId());
+    }
+
+    private void updateWithReason(RejectedPromiseEntity rejectedPromiseEntity) {
+        if (rejectedPromiseEntity.getWhat() == null
+                || rejectedPromiseEntity.getWhom() == null
+                || rejectedPromiseEntity.getWhen() == null
+                || rejectedPromiseEntity.getTill() == null) {
+            rejectedPromiseEntity.setReason(RejectReason.INCOMPLETE_DATA);
+        } else if (rejectedPromiseEntity.getTill().isBefore(rejectedPromiseEntity.getWhen())) {
+            rejectedPromiseEntity.setReason(RejectReason.PAST_DEADLINE);
+        }
     }
 }

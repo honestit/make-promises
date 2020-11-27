@@ -1,4 +1,4 @@
-package pl.honestit.projects.promises.client.properties;
+package pl.honestit.projects.promises.client.external.maker;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
